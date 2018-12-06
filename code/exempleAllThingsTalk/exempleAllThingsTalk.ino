@@ -17,8 +17,9 @@ void callback(char* topic, byte* payload, unsigned int length);
 PubSubClient pubSub(mqttServer, 1883, callback, wifi);
 int status = WL_IDLE_STATUS;
 
-
-ATTDevice device;
+String deviceId = String(MY_DEVICE_ID);
+String deviceToken = String(MY_DEVICE_TOKEN);
+ATTDevice device(deviceId, deviceToken);
 
 
 void setup() {
@@ -35,7 +36,7 @@ void setup() {
     Serial.println("tentative de connexion au serveur distant");
    
   }
-  device.addAsset("MonPotar", "Potentiometer", "Pot value", "sensor", "integer");
+  device.addAsset("mon_potar", "Potentiometer", "Pot value", "sensor", "integer");
   while(!device.subscribe(pubSub)){
     Serial.println("tentative de connexion au broker mqtt");
   }
@@ -47,7 +48,7 @@ void loop() {
   
   int val = analogRead(A6);
 
-  device.send(String(val), "MonPotar");
+  device.send(String(val), "mon_potar");
 
   device.process();
 
