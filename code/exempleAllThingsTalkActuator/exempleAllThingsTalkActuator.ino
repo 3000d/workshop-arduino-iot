@@ -59,7 +59,7 @@ void callback(char* topic, byte* payload, unsigned int length){
   String msgString;
 
   // récupération du nom de l'asset (savoir si c'est bien à nousu qu'on parle)
-  String assetName = device.getAssetName(topic, strlen(topic));
+  // String assetName = device.getAssetName(topic, strlen(topic));
   
   // manipulation du message reçu pour le rendre plus facilement traitable
   {
