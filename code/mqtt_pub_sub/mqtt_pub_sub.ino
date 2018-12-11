@@ -37,6 +37,7 @@ void callback(char* topic, byte* payload, unsigned int length){
   // récuperation du message
   Serial.print("message reçu sur le topic: ");
   Serial.println(topic);
+  // on récupère le premier caractère du payload (message mqtt reçu)
   char val = payload[0];
 
   if(val == '0'){
